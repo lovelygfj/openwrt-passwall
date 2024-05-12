@@ -145,11 +145,11 @@ msgstr "请确保此Socks服务可用。"
 msgid "Format must be:"
 msgstr "格式必须为："
 
+msgid "Request protocol"
+msgstr "请求协议"
+
 msgid "Remote DNS DoH"
 msgstr "远程 DNS DoH"
-
-msgid "Cache Resolved"
-msgstr "缓存解析结果"
 
 msgid "Notify the DNS server when the DNS query is notified, the location of the client (cannot be a private IP address)."
 msgstr "用于 DNS 查询时通知 DNS 服务器，客户端所在的地理位置（不能是私有 IP 地址）。"
@@ -157,29 +157,26 @@ msgstr "用于 DNS 查询时通知 DNS 服务器，客户端所在的地理位�
 msgid "This feature requires the DNS server to support the Edns Client Subnet (RFC7871)."
 msgstr "此功能需要 DNS 服务器支持 EDNS Client Subnet（RFC7871）。"
 
-msgid "The effect is better, but will increase the memory."
-msgstr "效果更好，但会增加内存使用。"
+msgid "The effect is better, recommend."
+msgstr "效果更好，推荐使用。"
 
 msgid "Default DNS"
 msgstr "默认DNS"
 
-msgid "The default DNS used when not in the domain name rules list."
-msgstr "当域名不在规则列表中时使用的默认DNS。"
+msgid "When not matching any domain name list:"
+msgstr "当不匹配任何域名列表时："
 
-msgid "Remote DNS can avoid more DNS leaks, but some domestic domain names maybe to proxy!"
-msgstr "远程DNS可以避免更多的DNS泄露，但会导致规则列表外的某些国内域名可能会走代理！"
+msgid "Remote DNS: Can avoid more DNS leaks, but some domestic domain names maybe to proxy!"
+msgstr "远程DNS：可以避免更多的DNS泄露，但会导致规则列表外的某些国内域名可能会走代理！"
 
-msgid "Direct DNS Internet experience may be better, but DNS will be leaked!"
-msgstr "直连DNS上网体验可能会更佳，但是会泄露DNS！"
+msgid "Direct DNS: Internet experience may be better, but DNS will be leaked!"
+msgstr "直连DNS：上网体验可能会更佳，但是会泄露DNS！"
 
 msgid "ChinaDNS-NG Domain Default Tag"
 msgstr "ChinaDNS-NG 域名默认标签"
 
-msgid "Smart DNS"
-msgstr "智能 DNS"
-
-msgid "Forward to both remote and direct DNS, if the direct DNS resolution result is a mainland China ip, then use the direct result, otherwise use the remote result"
-msgstr "同时转发给远程和直连DNS，如果直连DNS解析结果是大陆ip，则使用直连结果，否则使用远程结果"
+msgid "Default: Forward to both direct and remote DNS, if the direct DNS resolution result is a mainland China ip, then use the direct result, otherwise use the remote result."
+msgstr "默认：同时转发给直连和远程DNS，如果直连DNS解析结果是大陆ip，则使用直连结果，否则使用远程结果。"
 
 msgid "Filter Proxy Host IPv6"
 msgstr "过滤代理域名 IPv6"
@@ -196,38 +193,44 @@ msgstr "清空 IPSET"
 msgid "Try this feature if the rule modification does not take effect."
 msgstr "如果修改规则后没有生效，请尝试此功能。"
 
-msgid "About DNS issues:"
-msgstr "关于DNS问题："
-
-msgid "Some browsers may have built-in DNS, be sure to close. Example: Chrome. Settings - Security and Privacy - Security - Use secure DNS disabled."
-msgstr "部分浏览器可能有内置的DNS，请务必关闭。如：chrome。 设置 - 安全和隐私设置 - 使用安全 DNS 关闭。"
-
-msgid "Sometimes after restart, you can not internet, especially the GFW mode. At this time, close all browsers (important), Windows Client, please `ipconfig /flushdns`. Please close the WiFi on the phone, cut the flight mode and then cut back."
-msgstr "有时候重启后，上不了，尤其是GFW模式。这时请先关闭所有浏览器（重要），Windows客户端请`ipconfig /flushdns`。手机端请关闭WIFI，切一下飞行模式再切回来。"
-
-msgid "The client DNS and the default gateway must point to this router."
-msgstr "客户端DNS和默认网关必须指向本路由器。"
-
-msgid "If you have a wrong DNS process, the consequences are at your own risk!"
-msgstr "如果你自行配置了错误的DNS流程，后果自负！"
-
-msgid "You can use load balancing for failover."
-msgstr "可以使用负载均衡实现故障切换功能。"
-
-msgid "Restore the default configuration method. Input example in the address bar:"
-msgstr "恢复默认配置方法，地址栏输入例："
-
-msgid "Hide menu method, input example in the address bar:"
-msgstr "隐藏菜单方法，地址栏输入例："
-
-msgid "After the hidden to the display, input example in the address bar:"
-msgstr "当你隐藏后想再次显示，地址栏输入例："
-
 msgid "Are you sure to reset?"
 msgstr "你确定要恢复吗？"
 
 msgid "Are you sure to hide?"
 msgstr "你确定要隐藏吗？"
+
+msgid "DNS related issues:"
+msgstr "DNS相关问题："
+
+msgid "Certain browsers such as Chrome have built-in DNS service, which may affect DNS resolution settings. You can go to 'Settings -> Privacy and security -> Use secure DNS' menu to turn it off."
+msgstr "某些浏览器如Chrome等内置此功能,这会影响设置的DNS解析。您可以进入 '设置->私隐和安全->使用安全DNS' 菜单,将其关闭。"
+
+msgid "If you are unable to access the internet after reboot, please try clearing the cache of your terminal devices (make sure to close all open browser application windows first, this step is especially important):"
+msgstr "如果在重启后无法上网,请尝试清除终端设备的缓存（先关闭所有正在使用的浏览器应用程序，这一步尤其重要）："
+
+msgid "For Windows systems, open Command Prompt and run the command 'ipconfig /flushdns'."
+msgstr "对于Windows系统,请在命令提示符中运行命令 'ipconfig /flushdns'."
+
+msgid "For Mac systems, open Terminal and run the command 'sudo killall -HUP mDNSResponder'."
+msgstr "对于Mac系统，在终端中运行命令 'sudo killall -HUP mDNSResponder'."
+
+msgid "For mobile devices, you can clear it by reconnecting to the network, such as toggling Airplane Mode and reconnecting to WiFi."
+msgstr "对于移动设备,可通过重新接入网络的方式清除。比如开关一次飞行模式,重新连接WiFi。"
+
+msgid "Please make sure your device's network settings point both the DNS server and default gateway to this router, to ensure DNS queries are properly routed."
+msgstr "请确认您设备的网络设置,客户端DNS服务器和默认网关应均指向本路由器,以确保DNS查询正确路由。"
+
+msgid "Restore to default configuration:"
+msgstr "恢复默认配置："
+
+msgid "Browser access:"
+msgstr "浏览器访问："
+
+msgid "Hide in main menu:"
+msgstr "在主菜单中隐藏："
+
+msgid "Show in main menu:"
+msgstr "在主菜单中显示："
 
 msgid "DNS Export Of Multi WAN"
 msgstr "国内DNS指定解析出口"
@@ -277,26 +280,29 @@ msgstr "GFW列表"
 msgid "Not China List"
 msgstr "中国列表以外"
 
-msgid "Game Mode"
-msgstr "游戏模式"
-
 msgid "China List"
 msgstr "中国列表"
 
 msgid "Localhost"
 msgstr "本机"
 
-msgid "Router Localhost"
-msgstr "路由器本机"
+msgid "Switch Mode"
+msgstr "切换模式"
 
-msgid "Same as the %s default proxy mode"
-msgstr "与 %s 默认代理模式相同"
+msgid "Localhost Proxy"
+msgstr "路由器本机代理"
+
+msgid "When selected, localhost can transparent proxy."
+msgstr "当勾选时，路由器本机可以透明代理。"
+
+msgid "Client Proxy"
+msgstr "客户端代理"
+
+msgid "When selected, devices in LAN can transparent proxy. Otherwise, it will not be proxy. But you can still use access control to allow the designated device to proxy."
+msgstr "当勾选时，局域网内的设备可以透明代理。否则，将不代理。但您仍然可以使用访问控制允许指定的设备代理。"
 
 msgid "Want different devices to use different proxy modes/ports/nodes? Please use access control."
 msgstr "希望不同设备使用不同的代理模式/端口/节点？请使用访问控制。"
-
-msgid "China list or gfwlist cannot be used together with outside China list!"
-msgstr "中国列表不能和中国列表外或防火墙表一起使用！"
 
 msgid "Operation"
 msgstr "操作"
@@ -385,6 +391,9 @@ msgstr "负载均衡"
 msgid "Balancing Strategy"
 msgstr "负载均衡策略"
 
+msgid "Fallback Node"
+msgstr "后备节点"
+
 msgid "Use Custome Probe URL"
 msgstr "使用自定义探测网址"
 
@@ -471,6 +480,9 @@ msgstr "导入分享URL"
 
 msgid "Build Share URL"
 msgstr "导出分享URL"
+
+msgid "Generate QRCode"
+msgstr "生成二维码"
 
 msgid "Import Finished"
 msgstr "导入完成："
@@ -678,12 +690,6 @@ msgstr "劫持ICMPv6 (IPv6 PING)"
 
 msgid "Sniffing"
 msgstr "流量嗅探"
-
-msgid "When using the shunt, must be enabled, otherwise the shunt will invalid."
-msgstr "使用分流时，必须启用，否则分流将无效。"
-
-msgid "Sniffing Route Only"
-msgstr "流量嗅探只供路由使用"
 
 msgid "TCP Proxy Way"
 msgstr "TCP 代理方式"
@@ -1066,8 +1072,8 @@ msgstr "完整匹配: 由'full:'开始，余下部分是一个域名。当此域
 msgid "Pre-defined domain list: Begining with 'geosite:' and the rest is a name, such as geosite:google or geosite:cn."
 msgstr "预定义域名列表：由'geosite:'开头，余下部分是一个名称，如geosite:google或者geosite:cn。"
 
-msgid "Domains from file: Such as 'ext:file:tag'. The value must begin with ext: (lowercase), and followed by filename and tag. The file is placed in resource directory, and has the same format of geosite.dat. The tag must exist in the file."
-msgstr "从文件中加载域名: 形如'ext:file:tag'，必须以ext:（小写）开头，后面跟文件名和标签，文件存放在资源目录中，文件格式与geosite.dat相同，标签必须在文件中存在。"
+msgid "Annotation: Begining with #"
+msgstr "注释: 由 # 开头"
 
 msgid "IP: such as '127.0.0.1'."
 msgstr "IP: 形如'127.0.0.1'。"
@@ -1077,9 +1083,6 @@ msgstr "CIDR: 形如'10.0.0.0/8'."
 
 msgid "GeoIP: such as 'geoip:cn'. It begins with geoip: (lower case) and followed by two letter of country code."
 msgstr "GeoIP: 形如'geoip:cn'，必须以geoip:（小写）开头，后面跟双字符国家代码，支持几乎所有可以上网的国家。"
-
-msgid "IPs from file: Such as 'ext:file:tag'. The value must begin with ext: (lowercase), and followed by filename and tag. The file is placed in resource directory, and has the same format of geoip.dat. The tag must exist in the file."
-msgstr "从文件中加载 IP: 形如'ext:file:tag'，必须以ext:（小写）开头，后面跟文件名和标签，文件存放在资源目录中，文件格式与geoip.dat相同标签必须在文件中存在。"
 
 msgid "Clear logs"
 msgstr "清空日志"
@@ -1315,8 +1318,8 @@ msgstr "接口"
 msgid "Bind Local"
 msgstr "本机监听"
 
-msgid "When selected, it can only be accessed locally, It is recommended to turn on when using reverse proxies or be fallback."
-msgstr "当勾选时，只能由本机访问此端口，当想被反向代理或被回落时建议勾选此项。"
+msgid "When selected, it can only be accessed localhost."
+msgstr "当勾选时，只能本机访问。"
 
 msgid "Accept LAN Access"
 msgstr "接受局域网访问"
@@ -1366,8 +1369,8 @@ msgstr "日志"
 msgid "Log"
 msgstr "日志"
 
-msgid "%s Node Log Close"
-msgstr "%s 节点日志关闭"
+msgid "%s Node Log"
+msgstr "%s 节点日志"
 
 msgid "Log Level"
 msgstr "日志等级"
@@ -1389,6 +1392,18 @@ msgstr "记录到系统日志"
 
 msgid "Logging to the system log for more advanced functions. For example, send logs to a dedicated log server."
 msgstr "将日志记录到系统日志，以实现更加高级的功能。例如，把日志发送到专门的日志服务器。"
+
+msgid "Log Event Filter"
+msgstr "日志事件过滤器"
+
+msgid "Support regular expression."
+msgstr "支持正则表达式。"
+
+msgid "Shell Command"
+msgstr "Shell 命令"
+
+msgid "Shell command to execute, replace log content with %s."
+msgstr "要执行的 Shell 命令，用 %s 代替日志内容。"
 
 msgid "Not enabled log"
 msgstr "未启用日志"
@@ -1480,11 +1495,11 @@ msgstr "无子连接时的健康检查"
 msgid "Initial Windows Size"
 msgstr "初始窗口大小"
 
-msgid "No Sniffing Lists"
-msgstr "不进行流量嗅探的域名列表"
+msgid "Excluded Domains"
+msgstr "排除域名"
 
-msgid "Hosts added into No Sniffing Lists will not resolve again on server."
-msgstr "加入的域名不会再次在服务器解析。"
+msgid "If the traffic sniffing result is in this list, the destination address will not be overridden."
+msgstr "如果流量嗅探结果在此列表中，则不会覆盖目标地址。"
 
 msgid "Buffer Size"
 msgstr "缓冲区大小"
@@ -1564,8 +1579,8 @@ msgstr "TCP 分片，在某些情况下可以欺骗审查系统，比如绕过 S
 msgid "Fragment Packets"
 msgstr "分片方式"
 
-msgid " \"1-3\" is for segmentation at TCP layer, applying to the beginning 1 to 3 data writes by the client. \"tlshello\" is for TLS client hello packet fragmentation."
-msgstr " \"1-3\" 是 TCP 的流切片，应用于客户端第 1 至第 3 次写数据。\"tlshello\" 是 TLS 握手包切片。"
+msgid "\"1-3\" is for segmentation at TCP layer, applying to the beginning 1 to 3 data writes by the client. \"tlshello\" is for TLS client hello packet fragmentation."
+msgstr "\"1-3\" 是 TCP 的流切片，应用于客户端第 1 至第 3 次写数据。\"tlshello\" 是 TLS 握手包切片。"
 
 msgid "Fragment Length"
 msgstr "分片包长"
@@ -1587,3 +1602,6 @@ msgstr "落地节点"
 
 msgid "Only support a layer of proxy."
 msgstr "仅支持一层代理。"
+
+msgid "Only work with using the %s node."
+msgstr "与使用 %s 节点时生效。"

@@ -14,6 +14,7 @@ o = s:option(ListValue, "auto_detection_time", translate("Automatic detection de
 o:value("0", translate("Close"))
 o:value("icmp", "Ping")
 o:value("tcping", "TCP Ping")
+o.description = translate("To optimize performance, auto-detection is disabled when there are more than 30 nodes.")
 
 o = s:option(Flag, "show_node_info", translate("Show server address and port"))
 o.default = "0"
@@ -23,6 +24,24 @@ s:append(Template(appname .. "/node_list/link_add_node"))
 
 local auto_detection_time = m:get("@global_other[0]", "auto_detection_time") or "0"
 local show_node_info = m:get("@global_other[0]", "show_node_info") or "0"
+if auto_detection_time ~= "0" then
+	local node_count = 0
+	for k, e in ipairs(api.get_valid_nodes()) do
+		if e.protocol ~= "_shunt" and e.protocol ~= "_balancing" and e.protocol ~= "_urltest" and e.protocol ~= "_iface" then
+			node_count = node_count + 1
+		end
+	end
+	if node_count > 30 then auto_detection_time = "0" end
+end
+
+-- Pass the auto_detection_time global variable to the webpage
+local o = s:option(DummyValue, "_auto_detection_time")
+o.rawhtml = true
+o.default = string.format([[
+	<script>
+		window.auto_detection_time = "%s";
+	</script>
+]], auto_detection_time)
 
 -- [[ Node List ]]--
 s = m:section(TypedSection, "nodes")
@@ -62,15 +81,15 @@ function s.remove(e, t)
 		end
 	end)
 	TypedSection.remove(e, t)
-	local new_node = "nil"
+	local new_node = ""
 	local node0 = m:get("@nodes[0]") or nil
 	if node0 then
 		new_node = node0[".name"]
 	end
-	if (m:get("@global[0]", "tcp_node") or "nil") == t then
+	if (m:get("@global[0]", "tcp_node") or "") == t then
 		m:set('@global[0]', "tcp_node", new_node)
 	end
-	if (m:get("@global[0]", "udp_node") or "nil") == t then
+	if (m:get("@global[0]", "udp_node") or "") == t then
 		m:set('@global[0]', "udp_node", new_node)
 	end
 end
@@ -103,15 +122,28 @@ o.cfgvalue = function(t, n)
 		local protocol = m:get(n, "protocol")
 		if protocol == "_balancing" then
 			protocol = translate("Balancing")
+		elseif protocol == "_urltest" then
+			protocol = "URLTest"
 		elseif protocol == "_shunt" then
 			protocol = translate("Shunt")
 		elseif protocol == "vmess" then
 			protocol = "VMess"
 		elseif protocol == "vless" then
 			protocol = "VLESS"
+		elseif protocol == "shadowsocks" then
+			protocol = "SS"
+		elseif protocol == "shadowsocksr" then
+			protocol = "SSR"
+		elseif protocol == "wireguard" then
+			protocol = "WG"
+		elseif protocol == "hysteria" then
+			protocol = "HY"
+		elseif protocol == "hysteria2" then
+			protocol = "HY2"
 		else
 			protocol = protocol:gsub("^%l",string.upper)
 		end
+		if type == "sing-box" then type = "Sing-Box" end
 		type = type .. " " .. protocol
 	end
 	local address = m:get(n, "address") or ""
@@ -136,13 +168,15 @@ o = s:option(DummyValue, "ping", "Ping")
 o.width = "8%"
 o.rawhtml = true
 o.cfgvalue = function(t, n)
-	local result = "---"
-	if auto_detection_time ~= "icmp" then
-		result = string.format('<span class="ping"><a href="javascript:void(0)" onclick="javascript:ping_node(\'%s\', this, \'icmp\')">%s</a></span>', n, translate("Test"))
-	else
-		result = string.format('<span class="ping_value" cbiid="%s">---</span>', n)
+	local protocol = m:get(n, "protocol")
+	if protocol == "_shunt" or protocol == "_balancing" or protocol == "_urltest" or protocol == "_iface" then
+		return string.format('<span class="ping_value" cbiid="%s">---</span>', n)
 	end
-	return result
+	if auto_detection_time ~= "icmp" then
+		return string.format('<span class="ping"><a href="javascript:void(0)" onclick="javascript:ping_node(\'%s\', this, \'icmp\')">%s</a></span>', n, translate("Test"))
+	else
+		return string.format('<span class="ping_value" cbiid="%s">---</span>', n)
+	end
 end
 
 ---- TCP Ping
@@ -150,13 +184,15 @@ o = s:option(DummyValue, "tcping", "TCPing")
 o.width = "8%"
 o.rawhtml = true
 o.cfgvalue = function(t, n)
-	local result = "---"
-	if auto_detection_time ~= "tcping" then
-		result = string.format('<span class="ping"><a href="javascript:void(0)" onclick="javascript:ping_node(\'%s\', this, \'tcping\')">%s</a></span>', n, translate("Test"))
-	else
-		result = string.format('<span class="tcping_value" cbiid="%s">---</span>', n)
+	local protocol = m:get(n, "protocol")
+	if protocol == "_shunt" or protocol == "_balancing" or protocol == "_urltest" or protocol == "_iface" then
+		return string.format('<span class="tcping_value" cbiid="%s">---</span>', n)
 	end
-	return result
+	if auto_detection_time ~= "tcping" then
+		return  string.format('<span class="ping"><a href="javascript:void(0)" onclick="javascript:ping_node(\'%s\', this, \'tcping\')">%s</a></span>', n, translate("Test"))
+	else
+		return  string.format('<span class="tcping_value" cbiid="%s">---</span>', n)
+	end
 end
 
 o = s:option(DummyValue, "_url_test", translate("URL Test"))
